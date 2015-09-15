@@ -14,6 +14,7 @@ angular.module('exampleApp', ['ssAngular'])
     $scope.status = "";
 
     $scope.linkModel('example', {name: 'Tom'},'modelData');
+    $scope.linkPagedModel('pages', {perPage: 100, activePages: 3, pagedArray: 'pages'});
 
     $scope.$on('ss-example', function(event,msg) {
       $scope.messages.push(msg);
@@ -31,6 +32,13 @@ angular.module('exampleApp', ['ssAngular'])
       }
     };
 
+    $scope.nextPage = function(){
+      $scope.pages && $scope.pages.next();
+    };
+    $scope.prevPage = function(){
+      $scope.pages && $scope.pages.previous();
+    };
+
     $scope.$on('$destroy', function() {
       if($scope.streaming) {
         rpc('example.off', 'Navigated away');
@@ -39,8 +47,8 @@ angular.module('exampleApp', ['ssAngular'])
 
     $scope.logout = function() {
       var promise = auth.logout();
-      promise.then(function() { 
-        $location.path("/"); 
+      promise.then(function() {
+        $location.path("/");
       });
     }
   }])

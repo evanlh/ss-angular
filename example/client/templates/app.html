@@ -82,5 +82,17 @@
         </ul>
       </div>
     </div>
+
+    <div class="row">
+      <div class="span4"><h2>This result is paged</h2></div>
+      <div class="span1"><button ng-click="nextPage()">next</button></div>
+      <div class="span1"><button ng-click="prevPage()">previous</button></div>
+    </div>
+    <div class="row">
+      <div class="span1" ng-repeat="num in pages.pages">
+        {{ num.key }}: {{num.random }}
+      </div>
+    </div>
+
   </div>
 </div>
