@@ -1,4 +1,4 @@
-angular.module('exampleApp', ['ssAngular'])
+angular.module('exampleApp', ['ssAngular', 'ngRoute'])
   .config(['authProvider','$routeProvider','$locationProvider',function(authProvider,$routeProvider,$locationProvider) {
     authProvider.authServiceModule('example');
     authProvider.loginPath('/login');
@@ -8,7 +8,7 @@ angular.module('exampleApp', ['ssAngular'])
       otherwise({redirectTo:'/app'});
     $locationProvider.html5Mode(true);
   }])
-  .controller('SSCtrl',['$scope','$location','pubsub','rpc','model','auth', function($scope,$location,pubsub,rpc,model,auth) {
+  .controller('SSCtrl',['$scope','$location','pubsub','rpc','model','pagedModel', 'auth', function($scope,$location,pubsub,rpc,model,pagedModel,auth) {
     $scope.messages = []
     $scope.streaming = false;
     $scope.status = "";
